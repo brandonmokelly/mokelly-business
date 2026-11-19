@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOKELLY BUSINESS</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5fa;
+    color: #172033;
+}
+
+header {
+    background: #17152e;
+    color: white;
+    padding: 22px;
+}
+
+header h1 {
+    font-size: 23px;
+}
+
+header p {
+    color: #c6c4dc;
+    margin-top: 6px;
+}
+
+nav {
+    display: flex;
+    overflow-x: auto;
+    background: white;
+    padding: 12px;
+    gap: 8px;
+}
+
+nav button {
+    border: none;
+    background: #eeeefa;
+    padding: 12px;
+    border-radius: 9px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+nav button.active {
+    background: #6c42d9;
+    color: white;
+}
+
+main {
+    padding: 17px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+h2 {
+    margin-bottom: 18px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 13px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.card p {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.card strong {
+    font-size: 21px;
+    color: #6c42d9;
+}
+
+.panel {
+    background: white;
+    padding: 18px;
+    border-radius: 13px;
+    margin-top: 17px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.action {
+    width: 100%;
+    padding: 14px;
+    background: #6c42d9;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.item {
+    background: white;
+    padding: 14px;
+    margin-top: 9px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    overflow-wrap: anywhere;
+}
+
+.delete {
+    background: #ffe5e5;
+    color: #d22;
+    border: none;
+    padding: 7px;
+    border-radius: 6px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #888;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>◆ MOKELLY BUSINESS</h1>
+    <p>Votre gestion commerciale simplifiée</p>
+</header>
+
+<nav>
+    <button class="active" onclick="showPage('dashboard',this)">Accueil</button>
+    <button onclick="showPage('products',this)">Produits</button>
+    <button onclick="showPage('clients',this)">Clients</button>
+    <button onclick="showPage('sales',this)">Ventes</button>
+    <button onclick="showPage('expenses',this)">Dépenses</button>
+    <button onclick="showPage('history',this)">Historique</button>
+</nav>
+
+<main>
+
+<section id="dashboard" class="page active">
+    <h2>Tableau de bord</h2>
+
+    <div class="cards">
+        <div class="card">
+            <p>Produits</p>
+            <strong id="productCount">0</strong>
+        </div>
+
+        <div class="card">
+            <p>Clients</p>
+            <strong id="clientCount">0</strong>
+        </div>
+
+        <div class="card">
+            <p>Ventes totales</p>
+            <strong id="totalSales">0</strong>
+        </div>
+
+        <div class="card">
+            <p>Dépenses</p>
+            <strong id="totalExpenses">0</strong>
+        </div>
+
+        <div class="card">
+            <p>Bénéfice estimé</p>
+            <strong id="profit">0</strong>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Bienvenue sur MOKELLY BUSINESS</h3>
+        <p style="margin-top:12px">
+        Gérez votre activité, vos clients, vos produits,
+        vos ventes et vos dépenses depuis un seul endroit.
+        </p>
+    </div>
+</section>
+
+<section id="products" class="page">
+    <h2>Gestion des produits</h2>
+
+    <div class="panel">
+        <input id="productName" placeholder="Nom du produit">
+        <input id="productPrice" type="number" placeholder="Prix de vente">
+        <input id="productStock" type="number" placeholder="Quantité en stock">
+        <button class="action" onclick="addProduct()">Ajouter le produit</button>
+    </div>
+
+   
